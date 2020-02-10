@@ -15,21 +15,11 @@ function AuthNavigation() {
             <Stack.Navigator initialRouteName="AuthHome" headerMode="screen">
                 <Stack.Screen name="Confirm" component={Confirm} />
                 <Stack.Screen name="AuthHome" component={AuthHome} />
-
                 <Stack.Screen name="Login" component={Login} />
                 <Stack.Screen name="Signup" component={Signup} />
             </Stack.Navigator>
         </NavigationContainer>
     );
 }
-
-// const AuthNavigation = createStackNavigator({
-//     AuthHome,
-//     Signup,
-//     Login,
-//     Confirm
-// });
-
-//export default createAppContainer(AuthNavigation);
 
 export default AuthNavigation;

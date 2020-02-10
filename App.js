@@ -24,7 +24,7 @@ export default function App() {
     const [isLoggedIn, setLoggedIn] = useState(null);
     const preLoad = async () => {
         try {
-            //await AsyncStorage.setItem("isLoggedIn", "false");
+            await AsyncStorage.setItem("isLoggedIn", "true");
 
             // Font
             await Font.loadAsync({
@@ -53,7 +53,6 @@ export default function App() {
             } else {
                 setLoggedIn(true);
             }
-            console.log("App isLoggedIn22", isLoggedIn);
 
             setLoaded(true);
             setClient(client);
