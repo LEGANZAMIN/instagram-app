@@ -11,18 +11,16 @@ import Search from "../screens/Search";
 const Tab = createBottomTabNavigator();
 
 function Add({ navigation }) {
-    // useEffect(() => {
-    //     const unsubscribe = navigation.addListener("tabPress", e => {
-    //         // Prevent default behavior
-    //         e.preventDefault();
-
-    //         // Do something manually
-    //         console.log("click tab...");
-    //     });
-
-    //     return unsubscribe;
-    // }, [navigation]);
-
+    useEffect(() => {
+        const unsubscribe = navigation.addListener("tabPress", e => {
+            // Prevent default behavior
+            e.preventDefault();
+            // Do something manually
+            console.log("click tab...");
+            navigation.navigate("PhotoNavigation");
+        });
+        return unsubscribe;
+    }, [navigation]);
     return (
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
             <Text>Add</Text>
@@ -32,21 +30,19 @@ function Add({ navigation }) {
 
 function TabNavigation() {
     return (
-        <NavigationContainer>
-            <Tab.Navigator>
-                <Tab.Screen name="Home" component={Home} />
-                <Tab.Screen name="Notification" component={Notification} />
-                <Tab.Screen name="Add" component={Add} />
-                <Tab.Screen name="Profile" component={Profile} />
-                <Tab.Screen
-                    name="Search"
-                    component={Search}
-                    options={{
-                        tabBarLabel: "Search1111"
-                    }}
-                />
-            </Tab.Navigator>
-        </NavigationContainer>
+        <Tab.Navigator>
+            <Tab.Screen name="Home" component={Home} />
+            <Tab.Screen name="Notification" component={Notification} />
+            <Tab.Screen name="Add" component={Add} />
+            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen
+                name="Search"
+                component={Search}
+                options={{
+                    tabBarLabel: "Search"
+                }}
+            />
+        </Tab.Navigator>
     );
 }
 
