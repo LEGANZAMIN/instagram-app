@@ -1,6 +1,5 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import SelectPhoto from "../screens/Photo/SelectPhoto";
@@ -11,7 +10,7 @@ const Tab = createMaterialTopTabNavigator();
 
 function PhotoTabs() {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator tabBarPosition="bottom">
             <Tab.Screen name="SelectPhoto" component={SelectPhoto} />
             <Tab.Screen name="TakePhoto" component={TakePhoto} />
         </Tab.Navigator>
@@ -21,7 +20,7 @@ function PhotoTabs() {
 const Stack = createStackNavigator();
 function PhotoNavigation() {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator headerMode="none">
             <Stack.Screen name="PhotoTabs" component={PhotoTabs} />
             <Stack.Screen name="UploadPhoto" component={UploadPhoto} />
         </Stack.Navigator>

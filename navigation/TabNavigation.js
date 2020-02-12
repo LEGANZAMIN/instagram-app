@@ -3,10 +3,12 @@ import { Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import Home from "../screens/Home";
-import Notification from "../screens/Notification";
-import Profile from "../screens/Profile";
-import Search from "../screens/Search";
+import Home from "../screens/Tabs/Home";
+import Notification from "../screens/Tabs/Notification";
+import Profile from "../screens/Tabs/Profile";
+import Search from "../screens/Tabs/Search";
+
+import { MaterialCommunityIcons } from "react-native-vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -30,20 +32,43 @@ function Add({ navigation }) {
 
 function TabNavigation() {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
+            tabBarOptions={{
+                activeTintColor: "#e91e63",
+                showLabel: true
+            }}
+        >
             <Tab.Screen name="Home" component={Home} />
             <Tab.Screen name="Notification" component={Notification} />
             <Tab.Screen name="Add" component={Add} />
-            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen
+                name="Profile"
+                component={Profile}
+                options={{
+                    tabBarLabel: "Profile",
+                    tabBarIcon: ({ color, size }) => <MaterialCommunityIcons name="artist-outline" color={color} size={size} />
+                }}
+            />
             <Tab.Screen
                 name="Search"
                 component={Search}
                 options={{
-                    tabBarLabel: "Search"
+                    tabBarLabel: "Search111"
                 }}
             />
         </Tab.Navigator>
     );
+}
+
+const stackFactory = initialRoute =>
+    createStackNavigator({
+        InitialRoute: {
+            screen: initialRoute
+        }
+    });
+
+function statckFactory2(initialRoute) {
+    return <Stack.Screen name="Home1" component={initialRoute} />;
 }
 
 export default TabNavigation;

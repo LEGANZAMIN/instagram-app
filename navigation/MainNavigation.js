@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 function MainNavigation() {
     return (
         <NavigationContainer>
-            <Stack.Navigator>
+            <Stack.Navigator headerMode="none">
                 <Stack.Screen name="TabNavigation" component={TabNavigation} />
                 <Stack.Screen name="PhotoNavigation" component={PhotoNavigation} />
             </Stack.Navigator>
