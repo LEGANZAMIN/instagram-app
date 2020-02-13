@@ -53,7 +53,7 @@ function TabNavigation() {
                 name="Search"
                 component={Search}
                 options={{
-                    tabBarLabel: "Search111"
+                    tabBarLabel: "Search1"
                 }}
             />
         </Tab.Navigator>
