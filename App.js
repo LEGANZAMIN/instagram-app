@@ -41,13 +41,18 @@ export default function App() {
                 storage: AsyncStorage
             });
 
+            //console.log(options);
             const client = new ApolloClient({
                 cache,
                 ...options
             });
 
+            //const client = new ApolloClient({ uri: "http://countries.trevorblades.com/" });
+            //const client = new ApolloClient({ uri: "https://48p1r2roz4.sse.codesandbox.io" });
+            //const client = new ApolloClient({ uri: "http://192.168.219.167:4000" });
+
             const isLoggedIn = await AsyncStorage.getItem("isLoggedIn");
-            console.log("App isLoggedIn", isLoggedIn);
+
             if (!isLoggedIn || isLoggedIn === "false") {
                 setLoggedIn(false);
             } else {

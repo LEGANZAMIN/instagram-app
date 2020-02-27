@@ -8,7 +8,6 @@ import MainNavigation from "../navigation/MainNavigation";
 export default () => {
     const isLoggedIn = useIsLoggedIn();
 
-    console.log("NavController", isLoggedIn);
     const logIn = useLogIn();
     const logOut = useLogOut();
 

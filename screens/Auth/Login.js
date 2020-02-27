@@ -4,7 +4,7 @@ import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
 import { Alert, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 //import LOG_IN from "./AuthQuery";
 import gql from "graphql-tag";
 
@@ -27,10 +27,9 @@ export default ({ navigation }) => {
         }
     `;
 
-    const [requestSecret, { data }] = useMutation(LOG_IN_TEMP);
+    const [requestSecretMutation, { data }] = useMutation(LOG_IN_TEMP);
 
     const handleLogin = async () => {
-        console.log("handleLogin");
         const { value } = emailInput;
         if (value === "") {
             return Alert.alert("Email can't be empty.");
@@ -40,14 +39,24 @@ export default ({ navigation }) => {
 
         try {
             setLoading(true);
-            //await requestSecret();
-            await requestSecret({ variables: { email: emailInput.value } });
-            Alert.alert("Check your email.");
-            navigation.navigate("Confirm");
+
+            //const isResult = true;
+
+            const {
+                data: { requestSecret }
+            } = await requestSecretMutation({ variables: { email: emailInput.value } });
+
+            console.log(data);
+            console.log(requestSecret);
+            if (requestSecret) {
+                Alert.alert("Check your email.");
+                navigation.navigate("Confirm", { email: value });
+            } else {
+                Alert.alert("Account not found");
+                navigation.navigate("Signup", { email: value });
+            }
         } catch (e) {
-            console.log("handleLogin11");
             console.log(e);
-            console.log("handleLogin22");
             Alert.alert("Can't log in now.");
         } finally {
             setLoading(false);
